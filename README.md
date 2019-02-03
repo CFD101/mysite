@@ -1,2 +1,3 @@
 # mysite
-Polling app
+Polling app.
+Connection to IDE working...
