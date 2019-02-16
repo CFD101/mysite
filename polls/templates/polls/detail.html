@@ -1,0 +1,34 @@
+
+
+<!-- Compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+
+<h2>{{ question.question_text }}</h2>
+
+<!-- {% if error_message %}
+  var toastHTML = {{ error_message }};
+  M.toast({html: toastHTML});
+{% endif %} -->
+
+{% if error_message %}<div class="card-panel red lighten-2">{{ error_message }}</div>{% endif %}
+<!-- ORGINIAL CODE from TUTORIAL {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %} -->
+
+<form action="{% url 'polls:vote' question.id %}" method="post">
+  {% csrf_token %}
+  {% for choice in question.choice_set.all %}
+    <p>
+      <label>
+        <input class="with-gap" type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}"/>
+        <span>{{ choice.choice_text }}<br></span>
+        <!--<input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
+        <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br> -->
+      </label>
+    </p>
+  {% endfor %}
+  <button class="btn waves-effect waves-light" type="submit" name="action">Vote</button>
+  <!-- <input type="submit" value="Vote"> -->
+</form>
