@@ -1,0 +1,11 @@
+/* The following doesn't work with Materialize - need to implement SASS, go to Materialze site for instructions*/
+li a {
+    color: green;
+}
+
+th a {
+    color: white;
+}
+body {
+    background: white url("images/tempsnip.gif") no-repeat;
+}
