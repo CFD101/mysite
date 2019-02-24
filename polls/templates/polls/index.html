@@ -36,3 +36,35 @@
 {% else %}
     <p>No polls are available.</p>
 {% endif %}
+
+
+  <div class="row">
+    <form class="col s12" action="{% url 'polls:newpoll' %}" method="post">
+      {% csrf_token %}
+      <div class="row">
+        <div class="input-field col s12">
+          <input name="question_wording" type="text" class="validate">
+          <label for="question_word">Question Wording</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input name="choice1" class="validate">
+          <label for="choice_1">Choice 1</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input name="choice2" class="validate">
+          <label for="choice_2">Choice 2</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input name="choice3" class="validate">
+          <label for="choice_3">Choice 3</label>
+        </div>
+      </div>
+      <button class="btn waves-effect waves-light" type="submit" name="action">Add Question</button>
+    </form>
+  </div>

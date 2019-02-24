@@ -3,6 +3,7 @@ from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 from django.views import generic
 from django.utils import timezone
+from django.template import loader
 
 from .models import Choice, Question
 
@@ -26,10 +27,30 @@ class DetailView(generic.DetailView):
         """
         return Question.objects.filter(pub_date__lte=timezone.now())
 
+# def detail(request, question_id):
+#     question = get_object_or_404(Question, pk=question_id)
+#     return render(request, 'polls/detail.html', {'question': question})
+
+def newpoll(request):
+    q_text = str(request.POST['question_wording'])
+    q = Question(question_text=q_text, pub_date=timezone.now())
+    q.save()
+    q_id=q.id
+    question = get_object_or_404(Question, pk=q_id)
+    return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
+    # return HttpResponseRedirect(render(request, 'polls/detail.html', {'question': q}))
+    #return HttpResponseRedirect(request, 'polls/detail.html',{'question': q})
+    #return HttpResponseRedirect(template.render(request, 'polls/detail.html', {'question': q}))
+    #return HttpResponseRedirect('polls/detail.html',{'question': q})
+    #return HttpResponseRedirect(reverse('polls/index.html'))
+    #return HttpResponseRedirect(reverse('polls:index'))
+    #return HttpResponseRedirect(reverse('polls:details', q.id))
+    #return render('polls/detail.html', q.id)
 
 class ResultsView(generic.DetailView):
     model = Question
     template_name = 'polls/results.html'
+
 
 def vote(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
