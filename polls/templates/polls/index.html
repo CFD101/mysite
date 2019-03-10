@@ -9,17 +9,28 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
 {% if latest_question_list %}
-  <table>
+  <!-- <table>
     <!--<ul class="collection"> -->
 
-    {% for question in latest_question_list %}
-      <tr>
-          <th><form action="#"><p><label><input type="checkbox" /><span></span></label></p></form></th>
-          <th><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></th>
+    <!-- {% for question in latest_question_list %}
+      <tr class="col s12">
+          <th class="col s1"><form class="col s2" action="#"><p><label><input type="checkbox" /><span></span></label></p></form></th>
+          <th class="col s11"><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></th>
       </tr>
     {% endfor %}
-    <!--</ul> -->
-  </table>
+  </table> -->
+
+  <form class="col s12" action="#">
+    {% for question in latest_question_list %}
+      <div class="col s2">
+          <p><label><input type="checkbox" /><span></span></label></p>
+      </div>
+      <div class="col s10">
+          <a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a>
+      </div>
+    {% endfor %}
+  </form>
+
   </br>
 
 

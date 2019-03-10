@@ -33,7 +33,14 @@ class DetailView(generic.DetailView):
 
 def newpoll(request):
     q_text = str(request.POST['question_wording'])
+    q_choice1 = str(request.POST['choice1'])
+    q_choice2 = str(request.POST['choice2'])
+    q_choice3 = str(request.POST['choice3'])
     q = Question(question_text=q_text, pub_date=timezone.now())
+    q.save()
+    q.choice_set.create(choice_text=q_choice1, votes=0)
+    q.choice_set.create(choice_text=q_choice2, votes=0)
+    q.choice_set.create(choice_text=q_choice3, votes=0)
     q.save()
     q_id=q.id
     question = get_object_or_404(Question, pk=q_id)
