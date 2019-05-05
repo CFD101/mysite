@@ -31,6 +31,12 @@ class DetailView(generic.DetailView):
 #     question = get_object_or_404(Question, pk=question_id)
 #     return render(request, 'polls/detail.html', {'question': question})
 
+# DELETE FUNCTION
+# def delete(request, question_id):
+#     question = get_object_or_404(Question, pk=question_id)
+#     question.delete()
+#     return redirect('index')
+
 def newpoll(request):
     q_text = str(request.POST['question_wording'])
     q_choice1 = str(request.POST['choice1'])

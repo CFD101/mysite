@@ -7,5 +7,14 @@ th a {
 
 }
 body {
-    background: white url("images/ArtBG.gif") no-repeat;
+    background: lightgrey url("images/ArtBG.gif") no-repeat;
+    margin: 20px 10px 20px;
+}
+
+form {
+    margin: 0px 0px 0px 50px;
+}
+
+#something {
+  margin-top: 10;
 }
